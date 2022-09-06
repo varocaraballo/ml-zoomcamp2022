@@ -1,0 +1,32 @@
+## Notes
+
+### 1.2 - ML vs Rule-based systems
+
+This is illustrated using a spam classifier.
+
+#### Rule-based systems
+
+Systems supported by fixed rules. In the used example these rules could be based on the sender, subject, or body of the emails. For example: 
+- If the subject contains **congratulations** and **winner** is spam.
+- If the sender address ends with `test.com` is spam.
+
+>**Cons:**<br/>
+Building a spam classifier based on rules has several drawbacks:
+> - **Difficult to maintain**: New rules may be needed frequently to block new spam patterns.
+> - **Difficult to build**: The set of rules could be huge
+> - **High risk of missclassifcation**: It is very likely that non-spam emails are classified as spam and viceversa
+
+#### ML systems
+
+Systems based on automatic learning models. What does this mean? Well, the first thing is to extract features from the objects we want to classify, in the example these features could be: `subject`, `body` and `sender`. Then identify what is the target of the system, in the example the target is: `isSpam` whose values are `True/1` or `False/0`. Then the system automatically _learns_ patterns based on the features associating an input object with a target value `isSpam=True` or `isSpam=False`. 
+
+> **Note:**<br/> 
+> Another good idea is to extract features derived from _rules_. In the spam example we could add other features like: 
+> - `customFeature1` with values:
+>   - `True/1` if the subject contains **congratulations** and **winner**,  or 
+>   - `False/0` otherwise
+> - `customFeature2` with values:
+>   - `True/1` the sender address ends with `test.com`,  or 
+>   - `False/0` otherwise
+
+Actually, what ML models do for classification tasks like this one is to assign a confidence level (in the interval `[0,1]`) as target value. Suppose that for an input email the system assign `isSpam=0.8`, this indicates that from the point of view of our model _the email is spam_ with a probability of `0.8`.
