@@ -81,7 +81,32 @@ Create an AWS environment in the cloud with all the required resources to have o
 ```bash
 eb create <env-name>  
 ```
-After running this command a lot of resources are created on AWS on our behalf to have out model ready and operation.
+After running this command a lot of resources are created on AWS on our behalf to have out model ready and operation. This also modifies the previously created `.elasticbeanstalk > config.yml` adding the environment name:
+
+```bash
+eb create mlzoomcamp-deployment
+```
+outputs: 
+```yml
+branch-defaults:
+  default:
+    environment: mlzoomcamp-deployment
+    group_suffix: null
+global:
+  application_name: ml-zoomcamp-deployment-homework
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Docker
+  default_region: eu-west-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: null
+  sc: null
+  workspace_type: Application
+```
 
 Finally, to clean-up the environment alongside the application and every created resource, use:
 ```bash
